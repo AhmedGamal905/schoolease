@@ -12,7 +12,9 @@ class RoleController extends Controller
      */
     public function index()
     {
-        $roles = Role::all();
+        $roles = Role::query()
+            ->latest()
+            ->paginate();
 
         return view('Roles.index', compact('roles'));
     }
@@ -22,7 +24,7 @@ class RoleController extends Controller
      */
     public function create()
     {
-        //
+        return view('Roles.create');
     }
 
     /**
@@ -30,38 +32,44 @@ class RoleController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
+        $request->validate([
+            'name' => ['required', 'string', 'max:50'],
+        ]);
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
+        Role::create(['name' => $request->name]);
+
+        return to_route('roles.index');
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Role $role)
     {
-        //
+        return view('Roles.edit', compact('role'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Role $role)
     {
-        //
+        $request->validate([
+            'name' => ['required', 'string', 'max:50'],
+        ]);
+
+        $role->update(['name' => $request->name]);
+
+        return to_route('roles.index');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Role $role)
     {
-        //
+        $role->delete();
+
+        return to_route('roles.index');
     }
 }

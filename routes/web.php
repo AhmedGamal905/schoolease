@@ -1,9 +1,9 @@
 <?php
 
+use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\RoleController;
 use Illuminate\Support\Facades\Route;
-use Spatie\Permission\Models\Permission;
-use Spatie\Permission\Models\Role;
 
 Route::get('/', function () {
     return view('welcome');
@@ -14,8 +14,8 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware(['auth', 'role:admin'])->group(function () {
-    Route::resource('/roles', Role::class);
-    Route::resource('/permissions', Permission::class);
+    Route::resource('/roles', RoleController::class)->except('show');
+    Route::resource('/permissions', PermissionController::class)->except('show');
 });
 
 Route::middleware('auth')->group(function () {
