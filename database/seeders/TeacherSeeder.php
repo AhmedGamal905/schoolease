@@ -4,7 +4,6 @@ namespace Database\Seeders;
 
 use App\Models\User;
 use Illuminate\Database\Seeder;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class TeacherSeeder extends Seeder
 {
@@ -17,6 +16,6 @@ class TeacherSeeder extends Seeder
             'name' => 'teacher',
             'email' => 'teacher@teacher.com',
             'password' => 'teacher@teacher.com',
-        ])->assignRole('teacher');;
+        ])->assignRole('teacher');
     }
 }

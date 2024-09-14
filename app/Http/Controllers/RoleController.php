@@ -16,7 +16,7 @@ class RoleController extends Controller
             ->latest()
             ->paginate();
 
-        return view('Roles.index', compact('roles'));
+        return view('roles.index', compact('roles'));
     }
 
     /**
@@ -24,7 +24,7 @@ class RoleController extends Controller
      */
     public function create()
     {
-        return view('Roles.create');
+        return view('roles.create');
     }
 
     /**
@@ -33,7 +33,7 @@ class RoleController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => ['required', 'string', 'max:50'],
+            'name' => ['required', 'string', 'max:50', 'unique:roles,name', 'lowercase'],
         ]);
 
         Role::create(['name' => $request->name]);
@@ -46,7 +46,7 @@ class RoleController extends Controller
      */
     public function edit(Role $role)
     {
-        return view('Roles.edit', compact('role'));
+        return view('roles.edit', compact('role'));
     }
 
     /**
@@ -55,7 +55,7 @@ class RoleController extends Controller
     public function update(Request $request, Role $role)
     {
         $request->validate([
-            'name' => ['required', 'string', 'max:50'],
+            'name' => ['required', 'string', 'max:50', 'unique:roles,name,'.$role->id, 'lowercase'],
         ]);
 
         $role->update(['name' => $request->name]);

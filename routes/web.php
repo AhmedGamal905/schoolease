@@ -10,10 +10,10 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    return view('welcome.index');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::middleware(['auth', 'role:admin'])->group(function () {
+Route::middleware(['auth', 'role:super-admin'])->group(function () {
     Route::resource('/roles', RoleController::class)->except('show');
     Route::resource('/permissions', PermissionController::class)->except('show');
 });
@@ -24,4 +24,4 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__ . '/auth.php';
+require __DIR__.'/auth.php';

@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role;
 
 class PermissionController extends Controller
 {
@@ -14,10 +14,11 @@ class PermissionController extends Controller
     public function index()
     {
         $permissions = Permission::query()
+            ->with('roles')
             ->latest()
             ->paginate();
 
-        return view('Permissions.index', compact('permissions'));
+        return view('permissions.index', compact('permissions'));
     }
 
     /**
@@ -25,7 +26,11 @@ class PermissionController extends Controller
      */
     public function create()
     {
-        return view('Permissions.create');
+        $roles = Role::query()
+            ->latest()
+            ->get();
+
+        return view('permissions.create', compact('roles'));
     }
 
     /**
@@ -34,15 +39,14 @@ class PermissionController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => ['required', 'string', 'max:10'],
-            'role_id' => ['required', 'exists:roles,id'],
+            'name' => ['required', 'string', 'max:50', 'unique:permissions,name'],
+            'role_ids' => ['required', 'array'],
+            'role_ids.*' => ['required', 'exists:roles,id'],
         ]);
 
         $permission = Permission::create(['name' => $request->name]);
 
-        $role = Role::findOrFail($request->role_id);
-
-        $role->givePermissionTo($permission);
+        $permission->assignRole($request->integer('role_ids'));
 
         return to_route('permissions.index');
     }
@@ -52,7 +56,7 @@ class PermissionController extends Controller
      */
     public function edit(Permission $permission)
     {
-        return view('Permissions.edit', compact('permission'));
+        return view('permissions.edit', compact('permission'));
     }
 
     /**
@@ -61,12 +65,12 @@ class PermissionController extends Controller
     public function update(Request $request, Permission $permission)
     {
         $request->validate([
-            'name' => ['required', 'string', 'max:10'],
+            'name' => ['required', 'string', 'max:50', 'unique:permissions,name,'.$permission->id],
         ]);
 
         $permission->update(['name' => $request->name]);
 
-        return to_route('roles.index');
+        return to_route('permissions.index');
     }
 
     /**

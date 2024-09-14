@@ -4,7 +4,6 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Permission;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class PermissionSeeder extends Seeder
 {
@@ -15,5 +14,6 @@ class PermissionSeeder extends Seeder
     {
         Permission::create(['name' => 'view roles']);
         Permission::create(['name' => 'view permission']);
+        Permission::create(['name' => 'super-admin']);
     }
 }

@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use App\Models\User;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class AdminSeeder extends Seeder
@@ -17,6 +16,6 @@ class AdminSeeder extends Seeder
             'name' => 'admin',
             'email' => 'admin@admin.com',
             'password' => 'admin@admin.com',
-        ])->assignRole('admin'); 
+        ])->assignRole('super-admin');
     }
 }
