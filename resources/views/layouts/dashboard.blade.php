@@ -205,6 +205,26 @@
                                             Permissions
                                         </a>
                                     </li>
+                                    <li>
+                                        <a class="flex gap-x-4 py-2 px-3 text-sm text-gray-800 rounded-lg hover:bg-gray-100 focus:outline-none focus:bg-gray-100 dark:hover:bg-neutral-700 dark:text-neutral-300 dark:focus:bg-neutral-700  " href="{{route('classrooms.index')}}">
+                                            Classrooms
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="flex gap-x-4 py-2 px-3 text-sm text-gray-800 rounded-lg hover:bg-gray-100 focus:outline-none focus:bg-gray-100 dark:hover:bg-neutral-700 dark:text-neutral-300 dark:focus:bg-neutral-700  " href="{{route('students.index')}}">
+                                            Students
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="flex gap-x-4 py-2 px-3 text-sm text-gray-800 rounded-lg hover:bg-gray-100 focus:outline-none focus:bg-gray-100 dark:hover:bg-neutral-700 dark:text-neutral-300 dark:focus:bg-neutral-700  " href="{{route('subjects.index')}}">
+                                            Subjects
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="flex gap-x-4 py-2 px-3 text-sm text-gray-800 rounded-lg hover:bg-gray-100 focus:outline-none focus:bg-gray-100 dark:hover:bg-neutral-700 dark:text-neutral-300 dark:focus:bg-neutral-700  " href="{{route('teachers.index')}}">
+                                            Teachers
+                                        </a>
+                                    </li>
                                 </ul>
                             </div>
                         </li>
@@ -310,12 +330,12 @@
         <div class="p-2 sm:p-5 sm:py-0 md:pt-5 space-y-5">
             @if (session()->has('success'))
             <div class="mt-2 bg-teal-100 border border-teal-200 text-sm text-teal-800 rounded-lg p-4 dark:bg-teal-800/10 dark:border-teal-900 dark:text-teal-500" role="alert" tabindex="-1" aria-labelledby="hs-soft-color-success-label">
-                <span id="hs-soft-color-success-label" class="font-bold">Success</span>{{ session('success') }}
+                <span id="hs-soft-color-success-label" class="font-bold">Success </span>{{ session('success') }}
             </div>
             @endif
             @if (session()->has('error'))
             <div class="mt-2 bg-red-100 border border-red-200 text-sm text-red-800 rounded-lg p-4 dark:bg-red-800/10 dark:border-red-900 dark:text-red-500" role="alert" tabindex="-1" aria-labelledby="hs-soft-color-danger-label">
-                <span id="hs-soft-color-danger-label" class="font-bold">Error</span>{{ session('error') }}
+                <span id="hs-soft-color-danger-label" class="font-bold">Error </span>{{ session('error') }}
             </div>
             @endif
             @yield('content')
