@@ -57,7 +57,7 @@ class SubjectController extends Controller
     public function update(Request $request, Subject $subject)
     {
         $request->validate([
-            'name' => ['required', 'string', 'max:20', 'unique:subjects,name,' . $subject->id, 'lowercase'],
+            'name' => ['required', 'string', 'max:20', 'unique:subjects,name,'.$subject->id, 'lowercase'],
         ]);
 
         $subject->update(['name' => $request->name]);

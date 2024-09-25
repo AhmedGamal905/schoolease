@@ -46,7 +46,7 @@ class PermissionController extends Controller
 
         $permission = Permission::create(['name' => $request->name]);
 
-        $permission->assignRole($request->integer('role_ids'));
+        $permission->assignRole(array_map('intval', $request->role_ids));
 
         return to_route('permissions.index');
     }

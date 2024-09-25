@@ -11,9 +11,13 @@ class Subject extends Model
 
     protected $fillable = ['name'];
 
-
     public function teachers()
     {
         return $this->belongsToMany(User::class, 'subject_user');
+    }
+
+    public function lessons()
+    {
+        return $this->hasMany(Lesson::class);
     }
 }

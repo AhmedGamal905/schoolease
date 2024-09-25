@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ClassroomController;
+use App\Http\Controllers\LessonController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RoleController;
@@ -28,10 +29,14 @@ Route::middleware(['auth', 'role:super-admin'])->group(function () {
     Route::post('/users/{user}/subjects/{subject}', [TeacherController::class, 'toggleAssignment'])->name('subject.toggle');
 });
 
+Route::middleware(['auth', 'role:teacher'])->group(function () {
+    Route::resource('/lessons', LessonController::class)->only('index', 'create', 'destroy');
+});
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__ . '/auth.php';
+require __DIR__.'/auth.php';
