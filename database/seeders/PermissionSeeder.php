@@ -15,5 +15,6 @@ class PermissionSeeder extends Seeder
         Permission::create(['name' => 'view roles']);
         Permission::create(['name' => 'view permission']);
         Permission::create(['name' => 'super-admin']);
+        Permission::create(['name' => 'teacher']);
     }
 }

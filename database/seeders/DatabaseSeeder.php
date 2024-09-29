@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
             TeacherSeeder::class,
             SubjectSeeder::class,
             LessonSeeder::class,
+            ExamSeeder::class,
         ]);
     }
 }

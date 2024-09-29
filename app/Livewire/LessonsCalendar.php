@@ -39,9 +39,7 @@ class LessonsCalendar extends Component
         if ($this->classroom && $this->date) {
             $this->lessons = Lesson::query()
                 ->whereDate('time', $this->date)
-                ->whereHas('classrooms', function ($query) {
-                    $query->where('classroom_id', $this->classroom);
-                })
+                ->whereRelation('classrooms', 'classroom_id', $this->classroom)
                 ->with('subject')
                 ->get();
         }

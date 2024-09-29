@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ClassroomController;
+use App\Http\Controllers\ExamController;
 use App\Http\Controllers\LessonController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\ProfileController;
@@ -31,6 +32,7 @@ Route::middleware(['auth', 'role:super-admin'])->group(function () {
 
 Route::middleware(['auth', 'role:teacher'])->group(function () {
     Route::resource('/lessons', LessonController::class)->only('index', 'create', 'destroy');
+    Route::resource('/exams', ExamController::class)->except('show');
 });
 
 Route::middleware('auth')->group(function () {
