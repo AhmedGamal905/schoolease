@@ -30,4 +30,14 @@ class Lesson extends Model
     {
         return $this->hasMany(Exam::class);
     }
+
+    public function users()
+    {
+        return $this->belongsToMany(User::class, 'lesson_user');
+    }
+
+    public function attendances()
+    {
+        return $this->hasMany(Attendance::class);
+    }
 }

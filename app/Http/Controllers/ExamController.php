@@ -47,8 +47,8 @@ class ExamController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'description' => 'required|string|max:255',
-            'lesson' => 'required|exists:lessons,id|unique:exams,lesson_id',
+            'description' => ['required', 'string', 'max:255'],
+            'lesson' => ['required', 'exists:lessons,id', 'unique:exams,lesson_id'],
         ]);
 
         Exam::create([
@@ -78,8 +78,8 @@ class ExamController extends Controller
     {
 
         $request->validate([
-            'description' => 'required|string|max:255',
-            'lesson' => 'required|exists:lessons,id|unique:exams,lesson_id,'.$exam->id,
+            'description' => ['required', 'string', 'max:255'],
+            'lesson' => ['required', 'exists:lessons,id', 'unique:exams,lesson_id,'.$exam->id],
         ]);
 
         $exam->update([

@@ -11,7 +11,7 @@ class Classroom extends Model
 
     protected $fillable = ['name'];
 
-    public function students()
+    public function users()
     {
         return $this->hasMany(User::class);
     }

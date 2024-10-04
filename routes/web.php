@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\ClassroomController;
 use App\Http\Controllers\ExamController;
 use App\Http\Controllers\LessonController;
@@ -33,6 +34,9 @@ Route::middleware(['auth', 'role:super-admin'])->group(function () {
 Route::middleware(['auth', 'role:teacher'])->group(function () {
     Route::resource('/lessons', LessonController::class)->only('index', 'create', 'destroy');
     Route::resource('/exams', ExamController::class)->except('show');
+    Route::get('/lessons/{lesson}/attendance', [AttendanceController::class, 'show'])->name('attendance.show');
+    Route::post('/lessons/{lesson}/attendance', [AttendanceController::class, 'store'])->name('attendance.store');
+    Route::get('/lessons/attendance', [AttendanceController::class, 'index'])->name('attendance.index');
 });
 
 Route::middleware('auth')->group(function () {
