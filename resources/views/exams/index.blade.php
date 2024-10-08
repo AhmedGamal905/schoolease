@@ -33,6 +33,11 @@
             </th>
             <th scope="col">
                 <button id="hs-pro-snms" type="button" class="px-4 py-2.5 text-start w-full flex items-center gap-x-1 text-sm font-normal text-gray-500 focus:outline-none focus:bg-gray-100 dark:text-neutral-500 dark:focus:bg-neutral-700" aria-haspopup="menu" aria-expanded="false" aria-label="Dropdown">
+                    Grades
+                </button>
+            </th>
+            <th scope="col">
+                <button id="hs-pro-snms" type="button" class="px-4 py-2.5 text-start w-full flex items-center gap-x-1 text-sm font-normal text-gray-500 focus:outline-none focus:bg-gray-100 dark:text-neutral-500 dark:focus:bg-neutral-700" aria-haspopup="menu" aria-expanded="false" aria-label="Dropdown">
                     Update
                 </button>
             </th>
@@ -73,6 +78,13 @@
                         {{ $exam->lesson->duration }} Minutes
                     </span>
                 </div>
+            </td>
+            <td class="size-px whitespace-nowrap px-4 py-1">
+                <form method="GET" action="{{ route('grade.show', $exam) }}">
+                    <button type="submit" class="py-2 px-3 inline-flex items-center gap-x-2 text-xs font-medium rounded-lg border border-stone-200 bg-white text-green-500 shadow-sm hover:bg-stone-50 disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:bg-stone-50 dark:bg-neutral-800 dark:border-neutral-700 dark:text-green-500 dark:hover:bg-neutral-700 dark:focus:bg-neutral-700">
+                        Grades
+                    </button>
+                </form>
             </td>
             <td class="size-px whitespace-nowrap px-4 py-1">
                 <form method="GET" action="{{ route('exams.edit', $exam) }}">

@@ -3,6 +3,7 @@
 use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\ClassroomController;
 use App\Http\Controllers\ExamController;
+use App\Http\Controllers\GradeController;
 use App\Http\Controllers\LessonController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\ProfileController;
@@ -37,6 +38,8 @@ Route::middleware(['auth', 'role:teacher'])->group(function () {
     Route::get('/lessons/{lesson}/attendance', [AttendanceController::class, 'show'])->name('attendance.show');
     Route::post('/lessons/{lesson}/attendance', [AttendanceController::class, 'store'])->name('attendance.store');
     Route::get('/lessons/attendance', [AttendanceController::class, 'index'])->name('attendance.index');
+    Route::get('/exams/{exam}/grade', [GradeController::class, 'show'])->name('grade.show');
+    Route::post('/exams/{exam}/grade', [GradeController::class, 'store'])->name('grade.store');
 });
 
 Route::middleware('auth')->group(function () {
@@ -45,4 +48,4 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
