@@ -11,6 +11,7 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\SubjectController;
 use App\Http\Controllers\TeacherController;
+use App\Http\Controllers\UserRoleController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -30,6 +31,9 @@ Route::middleware(['auth', 'role:super-admin'])->group(function () {
     Route::post('/students/{user}', [StudentController::class, 'assignClass'])->name('students.update');
     Route::get('/teachers', [TeacherController::class, 'index'])->name('teachers.index');
     Route::post('/users/{user}/subjects/{subject}', [TeacherController::class, 'toggleAssignment'])->name('subject.toggle');
+    Route::get('user-roles', [UserRoleController::class, 'index'])->name('user-roles.index');
+    Route::post('user-roles/{user}', [UserRoleController::class, 'store'])->name('user-roles.store');
+    Route::put('user-roles/{user}', [UserRoleController::class, 'update'])->name('user-roles.update');
 });
 
 Route::middleware(['auth', 'role:teacher'])->group(function () {
@@ -48,4 +52,4 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__ . '/auth.php';
+require __DIR__.'/auth.php';

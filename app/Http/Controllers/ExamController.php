@@ -9,21 +9,15 @@ use Illuminate\Http\Request;
 
 class ExamController extends Controller
 {
-    protected $userId;
-
-    public function __construct()
-    {
-        $this->userId = auth()->user()->id;
-    }
-
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
+        $userId = auth()->user()->id;
 
         $exams = Exam::query()
-            ->whereRelation('lesson', 'user_id', $this->userId)
+            ->whereRelation('lesson', 'user_id', $userId)
             ->with('lesson')
             ->latest()
             ->paginate();
@@ -79,7 +73,7 @@ class ExamController extends Controller
 
         $request->validate([
             'description' => ['required', 'string', 'max:255'],
-            'lesson' => ['required', 'exists:lessons,id', 'unique:exams,lesson_id,'.$exam->id],
+            'lesson' => ['required', 'exists:lessons,id', 'unique:exams,lesson_id,' . $exam->id],
         ]);
 
         $exam->update([
@@ -109,8 +103,10 @@ class ExamController extends Controller
      */
     private function getUserLessons()
     {
+        $userId = auth()->user()->id;
+
         return Lesson::query()
-            ->where('user_id', $this->userId)
+            ->where('user_id', $userId)
             ->where('time', '>=', Carbon::today())
             ->with('subject')
             ->orderBy('time', 'asc')

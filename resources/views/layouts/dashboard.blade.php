@@ -200,6 +200,11 @@
                                         </a>
                                     </li>
                                     <li>
+                                        <a class="flex gap-x-4 py-2 px-3 text-sm text-gray-800 rounded-lg hover:bg-gray-100 focus:outline-none focus:bg-gray-100 dark:hover:bg-neutral-700 dark:text-neutral-300 dark:focus:bg-neutral-700  " href="{{route('user-roles.index')}}">
+                                            User Roles
+                                        </a>
+                                    </li>
+                                    <li>
                                         <a class="flex gap-x-4 py-2 px-3 text-sm text-gray-800 rounded-lg hover:bg-gray-100 focus:outline-none focus:bg-gray-100 dark:hover:bg-neutral-700 dark:text-neutral-300 dark:focus:bg-neutral-700  " href="{{route('classrooms.index')}}">
                                             Classrooms
                                         </a>
