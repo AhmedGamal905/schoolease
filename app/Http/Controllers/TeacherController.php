@@ -26,15 +26,13 @@ class TeacherController extends Controller
             $user->subjects()->detach($subject->id);
 
             session()->flash('success', 'Subject detached successfully!');
-
-            return to_route('teachers.index');
         } else {
 
             $user->subjects()->attach($subject->id);
 
             session()->flash('success', 'Subject assigned successfully!');
-
-            return to_route('teachers.index');
         }
+
+        return to_route('teachers.index');
     }
 }

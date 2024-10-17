@@ -26,14 +26,15 @@
             <tr class="divide-x divide-gray-200 dark:divide-neutral-700">
                 <td class="py-3 ps-3 w-1/4">
                     <div class="flex items-center h-5">
-                        <select name="grades[{{ $user->id }}]" class="border-gray-300 rounded text-blue-600 focus:ring-blue-500 dark:bg-neutral-800 dark:border-neutral-600 dark:focus:ring-offset-gray-800 text-sm py-1">
+                        <select name="grades[{{ $loop->index }}][grade]" class="border-gray-300 rounded text-blue-600 focus:ring-blue-500 dark:bg-neutral-800 dark:border-neutral-600 dark:focus:ring-offset-gray-800 text-sm py-1">
                             <option value="">Select Grade</option>
                             @for ($i = 0; $i <= 5; $i++)
                                 <option value="{{ $i }}" {{ $user->grades->isNotEmpty() && $user->grades->first()->grade == $i ? 'selected' : '' }}>{{ $i }}</option>
                                 @endfor
                         </select>
+                        <input type="hidden" name="grades[{{ $loop->index }}][user_id]" value="{{ $user->id }}">
                     </div>
-                    @error('grades.' . $user->id)
+                    @error('grades.' . $loop->index . '.grade')
                     <span class="text-red-500 text-sm">{{ $message }}</span>
                     @enderror
                 </td>

@@ -29,21 +29,21 @@ class GradeController extends Controller
     {
         $request->validate([
             'grades' => ['required', 'array'],
-            'grades.*' => ['required', 'integer', 'min:0', 'max:5'],
-            'grades.*.user_id' => ['exists:users,id'],
+            'grades.*.grade' => ['required', 'integer', 'min:0', 'max:5'],
+            'grades.*.user_id' => ['required', 'exists:users,id'],
         ]);
 
-        $grade = collect($request->grades)->map(function ($grade, $userId) use ($exam) {
+        $grades = collect($request->grades)->map(function ($grade) use ($exam) {
             return [
                 'exam_id' => $exam->id,
-                'user_id' => $userId,
-                'grade' => (int) $grade,
+                'user_id' => $grade['user_id'],
+                'grade' => (int) $grade['grade'],
             ];
         })->toArray();
 
-        Grade::upsert($grade, ['exam_id', 'user_id'], ['grade', 'updated_at']);
+        Grade::upsert($grades, ['exam_id', 'user_id'], ['grade', 'updated_at']);
 
-        session()->flash('success', 'Attendance saved successfully!');
+        session()->flash('success', 'Grades saved successfully!');
 
         return to_route('exams.index');
     }

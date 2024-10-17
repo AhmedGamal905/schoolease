@@ -4,7 +4,6 @@ namespace App\Livewire;
 
 use App\Models\Classroom;
 use App\Models\Lesson;
-use App\Services\LessonScheduler;
 use Carbon\Carbon;
 use Livewire\Component;
 
@@ -63,7 +62,7 @@ class LessonsCalendar extends Component
 
         $dateTime = Carbon::createFromFormat('Y-m-d H:i', $this->date.' '.$this->time);
 
-        if (LessonScheduler::isLessonOverlapping($dateTime, $this->duration, $this->lessons)) {
+        if ($this->isLessonOverlapping($dateTime, $this->duration, $this->lessons)) {
             $this->addError('time', 'The lesson time overlaps with an existing lesson.');
 
             return;
@@ -81,5 +80,26 @@ class LessonsCalendar extends Component
         session()->flash('success', 'Lesson created successfully!');
 
         return to_route('lessons.index');
+    }
+
+    private function isLessonOverlapping($dateTime, $duration, $existingLessons)
+    {
+        $endTime = $dateTime->copy()->addMinutes((int) $duration);
+
+        foreach ($existingLessons as $lesson) {
+
+            $lessonStart = Carbon::parse($lesson->time);
+
+            $lessonEnd = $lessonStart->copy()->addMinutes($lesson->duration);
+
+            if (
+                $dateTime->between($lessonStart, $lessonEnd) ||
+                $endTime->between($lessonStart, $lessonEnd)
+            ) {
+                return true;
+            }
+        }
+
+        return false;
     }
 }

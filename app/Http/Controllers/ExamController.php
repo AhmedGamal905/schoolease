@@ -73,7 +73,7 @@ class ExamController extends Controller
 
         $request->validate([
             'description' => ['required', 'string', 'max:255'],
-            'lesson' => ['required', 'exists:lessons,id', 'unique:exams,lesson_id,' . $exam->id],
+            'lesson' => ['required', 'exists:lessons,id', 'unique:exams,lesson_id,'.$exam->id],
         ]);
 
         $exam->update([

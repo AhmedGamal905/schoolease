@@ -9,6 +9,7 @@ use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\StudentController;
+use App\Http\Controllers\StudentOverviewController;
 use App\Http\Controllers\SubjectController;
 use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\UserRoleController;
@@ -44,6 +45,11 @@ Route::middleware(['auth', 'role:teacher'])->group(function () {
     Route::get('/lessons/attendance', [AttendanceController::class, 'index'])->name('attendance.index');
     Route::get('/exams/{exam}/grade', [GradeController::class, 'show'])->name('grade.show');
     Route::post('/exams/{exam}/grade', [GradeController::class, 'store'])->name('grade.store');
+});
+
+Route::middleware(['auth', 'role:user'])->group(function () {
+    Route::get('/student/lessons', [StudentOverviewController::class, 'lessons'])->name('overview.lessons');
+    Route::get('/student/exams', [StudentOverviewController::class, 'exams'])->name('overview.exams');
 });
 
 Route::middleware('auth')->group(function () {
