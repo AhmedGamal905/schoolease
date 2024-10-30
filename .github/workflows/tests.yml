@@ -22,6 +22,9 @@ jobs:
               cp -v .env.example .env
               composer install --no-interaction --prefer-dist --optimize-autoloader
               php artisan key:generate
- 
+              
+      - name: Compile Assets
+        run: npm run build
+
       - name: Tests
         run: ./vendor/bin/pest --coverage
