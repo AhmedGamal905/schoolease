@@ -24,10 +24,10 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware(['auth', 'role:super-admin'])->group(function () {
-    Route::resource('/roles', RoleController::class)->except('show');
-    Route::resource('/permissions', PermissionController::class)->except('show');
-    Route::resource('/classrooms', ClassroomController::class)->except('show');
-    Route::resource('/subjects', SubjectController::class)->except('show');
+    Route::resource('roles', RoleController::class)->except('show');
+    Route::resource('permissions', PermissionController::class)->except('show');
+    Route::resource('classrooms', ClassroomController::class)->except('show');
+    Route::resource('subjects', SubjectController::class)->except('show');
     Route::get('/students', [StudentController::class, 'index'])->name('students.index');
     Route::post('/students/{user}', [StudentController::class, 'assignClass'])->name('students.update');
     Route::get('/teachers', [TeacherController::class, 'index'])->name('teachers.index');
@@ -38,8 +38,8 @@ Route::middleware(['auth', 'role:super-admin'])->group(function () {
 });
 
 Route::middleware(['auth', 'role:teacher'])->group(function () {
-    Route::resource('/lessons', LessonController::class)->only('index', 'create', 'destroy');
-    Route::resource('/exams', ExamController::class)->except('show');
+    Route::resource('lessons', LessonController::class)->only('index', 'create', 'destroy');
+    Route::resource('exams', ExamController::class)->except('show');
     Route::get('/lessons/{lesson}/attendance', [AttendanceController::class, 'show'])->name('attendance.show');
     Route::post('/lessons/{lesson}/attendance', [AttendanceController::class, 'store'])->name('attendance.store');
     Route::get('/lessons/attendance', [AttendanceController::class, 'index'])->name('attendance.index');
