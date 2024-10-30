@@ -6,8 +6,14 @@ class StudentOverviewController extends Controller
 {
     public function lessons()
     {
-
         $user = auth()->user();
+
+        if (! $user || ! $user->classroom) {
+
+            session()->flash('error', 'You do not have access to any classroom, Contact the management.');
+
+            return redirect(route('dashboard'));
+        }
 
         $userClassroom = $user->classroom;
 
@@ -28,6 +34,13 @@ class StudentOverviewController extends Controller
     public function exams()
     {
         $user = auth()->user();
+
+        if (! $user || ! $user->classroom) {
+
+            session()->flash('error', 'You do not have access to any classroom, Contact the management.');
+
+            return redirect(route('dashboard'));
+        }
 
         $classroom = $user->classroom;
 

@@ -5,6 +5,7 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
+use Spatie\Permission\Models\Role;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\User>
@@ -40,5 +41,53 @@ class UserFactory extends Factory
         return $this->state(fn (array $attributes) => [
             'email_verified_at' => null,
         ]);
+    }
+
+    /**
+     * Create a user with the 'user' role.
+     *
+     * @return \App\Models\User
+     */
+    public function withUserRole()
+    {
+        $role = Role::firstOrCreate(['name' => 'user']);
+
+        $user = $this->create();
+
+        $user->assignRole($role);
+
+        return $user;
+    }
+
+    /**
+     * Create a user with the 'teacher' role.
+     *
+     * @return \App\Models\User
+     */
+    public function withTeacherRole()
+    {
+        $role = Role::firstOrCreate(['name' => 'teacher']);
+
+        $user = $this->create();
+
+        $user->assignRole($role);
+
+        return $user;
+    }
+
+    /**
+     * Create a user with the 'super-admin' role.
+     *
+     * @return \App\Models\User
+     */
+    public function withAdminRole()
+    {
+        $role = Role::firstOrCreate(['name' => 'super-admin']);
+
+        $user = $this->create();
+
+        $user->assignRole($role);
+
+        return $user;
     }
 }
