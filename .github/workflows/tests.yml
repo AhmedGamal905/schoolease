@@ -18,7 +18,10 @@ jobs:
           coverage: xdebug
  
       - name: Install Dependencies
-        run: composer install --no-interaction --prefer-dist --optimize-autoloader
+        run: |
+              cp -v .env.example .env
+              composer install --no-interaction --prefer-dist --optimize-autoloader
+              php artisan key:generate
  
       - name: Tests
         run: ./vendor/bin/pest --coverage
