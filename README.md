@@ -65,7 +65,7 @@ SchoolEase is a comprehensive school management system designed to streamline ad
 - **Student**: Log in to view lessons, exams, grades, and attendance.
 
 ## Testing
-Unit tests have been created using PHPUnit to ensure that modifications or new features do not interfere with the existing codebase. To run the tests, use:
+Tests have been created using PEST to ensure that modifications or new features do not interfere with the existing codebase. To run the tests, use:
 ```bash
 php artisan test
 ```
