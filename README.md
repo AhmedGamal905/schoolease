@@ -1,7 +1,7 @@
 # SchoolEase
 
 [![GitHub Tests Action Status](https://img.shields.io/github/actions/workflow/status/AhmedGamal905/schoolease/tests.yml?branch=main)](https://github.com/AhmedGamal905/schoolease/actions?query=workflow%3Atests+branch%3Amain)
-[![Test Coverage](https://raw.githubusercontent.com/AhmedGamal905/schoolease/main/badge-coverage.svg)]
+![Test Coverage](https://raw.githubusercontent.com/AhmedGamal905/schoolease/main/badge-coverage.svg)
 
 SchoolEase is a comprehensive school management system designed to streamline administrative tasks and enhance the learning experience for students, teachers, and administrators. Built using PHP, Laravel, HTML, CSS, JavaScript, Livewire, and MySQL, SchoolEase offers a robust and user-friendly platform for managing school operations.
 
