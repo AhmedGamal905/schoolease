@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1730334617">
-  <project timestamp="1730334617">
+<coverage generated="1730334846">
+  <project timestamp="1730334846">
     <package name="App\Http\Controllers">
       <file name="/home/runner/work/schoolease/schoolease/app/Http/Controllers/AttendanceController.php">
         <class name="App\Http\Controllers\AttendanceController" namespace="App\Http\Controllers">
