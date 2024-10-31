@@ -1,15 +1,19 @@
 # SchoolEase
 
+[![GitHub Tests Action Status](https://img.shields.io/github/actions/workflow/status/AhmedGamal905/schoolease/tests.yml?branch=main)](https://github.com/AhmedGamal905/schoolease/actions?query=workflow%3Atests+branch%3Amain)
+
 SchoolEase is a comprehensive school management system designed to streamline administrative tasks and enhance the learning experience for students, teachers, and administrators. Built using PHP, Laravel, HTML, CSS, JavaScript, Livewire, and MySQL, SchoolEase offers a robust and user-friendly platform for managing school operations.
 
 ## Table of Contents
-- [Features](#features)
-- [Installation](#installation)
-- [Usage](#usage)
-- [Testing](#testing)
-- [Roles and Permissions](#roles-and-permissions)
-- [Dashboard](#dashboard)
-- [Contributing](#contributing)
+- [SchoolEase](#schoolease)
+  - [Table of Contents](#table-of-contents)
+  - [Features](#features)
+  - [Installation](#installation)
+  - [Usage](#usage)
+  - [Testing](#testing)
+  - [Roles and Permissions](#roles-and-permissions)
+  - [Dashboard](#dashboard)
+  - [Contributing](#contributing)
 
 ## Features
 - **User Roles and Permissions**: Manage roles and permissions using the Spatie Permissions package.
